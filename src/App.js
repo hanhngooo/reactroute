@@ -1,19 +1,31 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, NavLink } from "react-router-dom";
 import "./App.css";
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
-import DiscoverMoviesPage from "./pages/ DiscoverMoviesPage";
-import NavBar from "./components/NavBar";
+import DiscoverMoviesPage from "./pages/DiscoverMoviesPage";
+import MovieDetail from "./pages/MovieDetail";
 
 function App() {
   return (
     <div className="App">
-      <p>Hello</p>
+      <nav>
+        <NavLink exact={true} to="/" activeStyle={{ fontWeight: "bold" }}>
+          Home Page
+        </NavLink>
+
+        <NavLink to="/about" activeStyle={{ fontWeight: "bold" }}>
+          About Page
+        </NavLink>
+
+        <NavLink to="/discover" activeStyle={{ fontWeight: "bold" }}>
+          Discover Movies Page
+        </NavLink>
+      </nav>
 
       <Switch>
-        <NavBar />
-        <Route path="/discover" component={DiscoverMoviesPage} />
+        <Route path="/discover/:imdbID" component={MovieDetail} />
+        <Route exact path="/discover" component={DiscoverMoviesPage} />
         <Route path="/about" component={AboutPage} />
         <Route path="/" component={HomePage} />
       </Switch>
